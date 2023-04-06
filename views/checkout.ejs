@@ -280,6 +280,9 @@ ul li:hover {
   }
 }
 </style>
+
+
+
 <div class='container'>
     <div class='window'>
       <div class='order-info'>
@@ -328,21 +331,21 @@ ul li:hover {
               </table>
               <img src='https://dl.dropboxusercontent.com/s/ubamyu6mzov5c80/visa_logo%20%281%29.png' height='80' class='credit-card-image' id='credit-card-image'></img>
               Card Number
-              <input class='input-field'></input>
+              <input class='input-field' id="cnum"></input>
               Card Holder
-              <input class='input-field'></input>
+              <input class='input-field' id="chold"></input>
               <table class='half-input-table'>
                 <tr>
                   <td> Expires
-                    <input class='input-field' placeholder="XX/YY"></input>
+                    <input class='input-field' id="expire" placeholder="XX/YY"></input>
                   </td>
                   <td>CVV
-                    <input class='input-field' type="password"></input>
+                    <input id="cvv" class='input-field' type="password"></input>
                   </td>
                 </tr>
               </table>
               
-              <form action="" method="post">
+              <form action="" method="post" onsubmit="return validateCreditCardInputs() ">
                 <button class='pay-btn'>Checkout</button>
               </form>
 
@@ -397,5 +400,48 @@ window.onclick = function(e) {
     activeDropdown = null;
   }
 }
+
+
+function validateCreditCardInputs() {
+ 
+  // Check that the card number is a string and is valid
+  var cardNumber=document.getElementById('cnum').value;
+  var cardHolder=document.getElementById('chold').value;
+  var cvv=document.getElementById('cvv').value;
+
+  console.log(cardNumber);
+
+  if (typeof cardNumber !== "string" || !validateCreditCardNumber(cardNumber)) {
+    return false;
+  }
+  
+  // Check that the card holder's name is a string
+  if (typeof cardHolder !== "string") {
+    return false;
+  }
+
+  // Check that the CVV is a string of 3 or 4 digits
+  if (typeof cvv !== "string" || !/^\d{3,4}$/.test(cvv)) {
+    return false;
+  }
+  
+  // All inputs are valid
+  return true;
+}
+
+
+
+function validateCreditCardNumber(cardNumber) {
+  // Remove all non-digit characters from the input
+  cardNumber = cardNumber.replace(/\D/g, '');
+  
+  // Check that the input consists of 13-16 digits
+  if (!/^\d{13,16}$/.test(cardNumber)) {
+    return false;
+  }
+  
+ return true;
+}
+
 
   </script>

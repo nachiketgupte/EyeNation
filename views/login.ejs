@@ -1,4 +1,5 @@
 <%- include("heading.ejs") -%>
+
 <body>
     <%- include("navbar.ejs") -%>
     <section class="vh-100 gradient-custom">
@@ -8,7 +9,7 @@
               <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
                 <div class="card-body p-4 p-md-5">
                   <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Login</h3>
-                  <form onsubmit="" method="post" action="/login">
+                  <form  method="post" >
                     <div class="form-outline">
                         <input type="text" id="username" required class="form-control form-control-lg" name="username"/>
                         <label class="form-label" for="userame">Username</label>
@@ -17,8 +18,8 @@
                       <div class="form-outline">
                         <input type="password" id="password" required class="form-control form-control-lg" name="password"/>
                         <label class="form-label" for="password">Password</label>
-                      </div>                      
-
+                      </div>           
+                    
                     <div class="mt-4 pt-2">
                       <input class="btn btn-primary btn-lg" type="submit" value="Submit" style="background-color: black;"/>
                     </div>
